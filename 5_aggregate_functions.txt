@@ -1,0 +1,152 @@
+Enter password: **************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 35
+Server version: 8.0.26 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| classicmodels      |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| school             |
+| sys                |
+| university         |
+| world              |
++--------------------+
+9 rows in set (0.01 sec)
+
+mysql> use university
+Database changed
+mysql> show tables;
++----------------------+
+| Tables_in_university |
++----------------------+
+| faculty              |
+| student              |
++----------------------+
+2 rows in set (0.01 sec)
+
+mysql> desc Student;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| ID       | int          | YES  |     | NULL    |       |
+| Name     | varchar(100) | YES  |     | NULL    |       |
+| Age      | int          | YES  |     | NULL    |       |
+| Location | varchar(100) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+4 rows in set (0.05 sec)
+
+mysql> select * from student;
++------+--------+------+----------+
+| ID   | Name   | Age  | Location |
++------+--------+------+----------+
+|  101 | Mohit  |   20 | NULL     |
+|  102 | bhavy  |   20 | NULL     |
+|  103 | nikhil | NULL | NULL     |
++------+--------+------+----------+
+3 rows in set (0.15 sec)
+
+mysql> select count(*) from student;
++----------+
+| count(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.11 sec)
+
+mysql> select count(age) from student;
++------------+
+| count(age) |
++------------+
+|          2 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from student where age is not null;
++----------+
+| count(*) |
++----------+
+|        2 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(distinct age) from student;
++---------------------+
+| count(distinct age) |
++---------------------+
+|                   1 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select count(distinct ID) from student;
++--------------------+
+| count(distinct ID) |
++--------------------+
+|                  3 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_university |
++----------------------+
+| faculty              |
+| student              |
++----------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from faculty;
++------------+-----------+--------------+--------+
+| Faculty_ID | Name      | Course       | Salary |
++------------+-----------+--------------+--------+
+|        101 | bhavy     | data science |  25000 |
+|        102 | venkatesh | B.Tech       |  10000 |
++------------+-----------+--------------+--------+
+2 rows in set (0.02 sec)
+
+mysql> select avg(salary) from faculty;
++-------------+
+| avg(salary) |
++-------------+
+|  17500.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary) from faculty;
++-------------+
+| max(salary) |
++-------------+
+|       25000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select min(salary) from faculty;
++-------------+
+| min(salary) |
++-------------+
+|       10000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(salary) from faculty;
++-------------+
+| sum(salary) |
++-------------+
+|       35000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql>

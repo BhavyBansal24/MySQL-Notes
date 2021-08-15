@@ -1,0 +1,234 @@
+Enter password: **************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 32
+Server version: 8.0.26 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| school             |
+| sys                |
+| university         |
+| world              |
++--------------------+
+8 rows in set (0.03 sec)
+
+mysql> use university;
+Database changed
+mysql> desc student;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| ID       | int          | YES  |     | NULL    |       |
+| Name     | varchar(100) | YES  |     | NULL    |       |
+| Age      | int          | YES  |     | NULL    |       |
+| Location | varchar(100) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+4 rows in set (0.11 sec)
+
+mysql> select * from student;
++------+--------+------+----------+
+| ID   | Name   | Age  | Location |
++------+--------+------+----------+
+|  101 | Mohit  |   20 | NULL     |
+|  102 | bhavy  |   20 | NULL     |
+|  103 | nikhil | NULL | NULL     |
++------+--------+------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from faculty;
++------------+-----------+--------------+--------+
+| Faculty_ID | Name      | Course       | Salary |
++------------+-----------+--------------+--------+
+|        101 | bhavy     | data science |  25000 |
+|        102 | venkatesh | B.Tech       |  10000 |
++------------+-----------+--------------+--------+
+2 rows in set (0.11 sec)
+
+mysql> select Name from Student;
++--------+
+| Name   |
++--------+
+| Mohit  |
+| bhavy  |
+| nikhil |
++--------+
+3 rows in set (0.00 sec)
+
+mysql> select Name, ID from Student;
++--------+------+
+| Name   | ID   |
++--------+------+
+| Mohit  |  101 |
+| bhavy  |  102 |
+| nikhil |  103 |
++--------+------+
+
+#### Here you can notice one thing the order of name and id get changed according to our call.
+
+3 rows in set (0.00 sec)
+
+mysql> source C:/Users/Bhavy Bansal/Documents/VS Code/JupyterNotebook/Data_Science_CodingNinjas/basicSQL_NotesOnly/mysqlsampledatabase.sql
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| classicmodels      |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| school             |
+| sys                |
+| university         |
+| world              |
++--------------------+
+9 rows in set (0.05 sec)
+
+mysql> use classicmodels;
+Database changed
+mysql> show tables;
++-------------------------+
+| Tables_in_classicmodels |
++-------------------------+
+| customers               |
+| employees               |
+| offices                 |
+| orderdetails            |
+| orders                  |
+| payments                |
+| productlines            |
+| products                |
++-------------------------+
+8 rows in set (0.17 sec)
+
+mysql> desc payments;
++----------------+---------------+------+-----+---------+-------+
+| Field          | Type          | Null | Key | Default | Extra |
++----------------+---------------+------+-----+---------+-------+
+| customerNumber | int           | NO   | PRI | NULL    |       |
+| checkNumber    | varchar(50)   | NO   | PRI | NULL    |       |
+| paymentDate    | date          | NO   |     | NULL    |       |
+| amount         | decimal(10,2) | NO   |     | NULL    |       |
++----------------+---------------+------+-----+---------+-------+
+4 rows in set (0.13 sec)
+
+mysql> select * from payments;
++----------------+-------------+-------------+-----------+
+| customerNumber | checkNumber | paymentDate | amount    |
++----------------+-------------+-------------+-----------+
+|            103 | HQ336336    | 2004-10-19  |   6066.78 |
+|            103 | JM555205    | 2003-06-05  |  14571.44 |
+|            103 | OM314933    | 2004-12-18  |   1676.14 |
+|            112 | BO864823    | 2004-12-17  |  14191.12 |
+|            112 | HQ55022     | 2003-06-06  |  32641.98 |
+|            112 | ND748579    | 2004-08-20  |  33347.88 |
+|            114 | GG31455     | 2003-05-20  |  45864.03 |
+|            114 | MA765515    | 2004-12-15  |  82261.22 |
+          #Deleted lots of data to make notes redable#
+|            486 | HS86661     | 2004-11-23  |  45994.07 |
+|            486 | JB117768    | 2003-03-20  |  25833.14 |
+|            487 | AH612904    | 2003-09-28  |  29997.09 |
+|            487 | PT550181    | 2004-02-29  |  12573.28 |
+|            489 | OC773849    | 2003-12-04  |  22275.73 |
+|            489 | PO860906    | 2004-01-31  |   7310.42 |
+|            495 | BH167026    | 2003-12-26  |  59265.14 |
+|            495 | FN155234    | 2004-05-14  |   6276.60 |
+|            496 | EU531600    | 2005-05-25  |  30253.75 |
+|            496 | MB342426    | 2003-07-16  |  32077.44 |
+|            496 | MN89921     | 2004-12-31  |  52166.00 |
++----------------+-------------+-------------+-----------+
+273 rows in set (0.13 sec)
+
+mysql> select customerNumber from Payments;
++----------------+
+| customerNumber |
++----------------+
+|            103 |
+|            103 |
+|            103 |
+|            112 |
+|            112 |
+|            112 |
+|            114 |
+|            114 |
+|            114 |
+      DELETED
+|            495 |
+|            495 |
+|            496 |
+|            496 |
+|            496 |
++----------------+
+273 rows in set (0.00 sec)
+
+mysql> select customerNumber from Payments limit 10;
++----------------+
+| customerNumber |
++----------------+
+|            103 |
+|            103 |
+|            103 |
+|            112 |
+|            112 |                ## SHOWS TOP 10 (can also notice multiple customerNumbers with same int value)
+|            112 |
+|            114 |
+|            114 |
+|            114 |
+|            114 |
++----------------+
+10 rows in set (0.00 sec)
+
+mysql> select distinct customerNumber from payments;  ## (removes the multiple and gives out distinct)
++----------------+
+| customerNumber |
++----------------+
+|            103 |
+|            112 |
+|            114 |
+|            119 |
+|            121 |
+|            124 |
+|            128 |
+|            129 |
+|            131 |
+|            141 |
+|            144 |
+     DELETED
+|            424 |
+|            447 |
+|            448 |
+|            450 |
+|            452 |
+|            455 |
+|            456 |
+|            458 |
+|            462 |
+|            471 |
+|            473 |
+|            475 |
+|            484 |
+|            486 |
+|            487 |
+|            489 |
+|            495 |
+|            496 |
++----------------+
+98 rows in set (0.00 sec)
+
+mysql>

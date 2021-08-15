@@ -1,0 +1,105 @@
+
+mysql> use school;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_school |
++------------------+
+| faculties        |
+| students         |
++------------------+
+2 rows in set (0.00 sec)
+
+mysql> use university;
+Database changed
+mysql> select * from faculty;
++------------+-----------+--------------+--------+
+| Faculty_ID | Name      | Course       | Salary |
++------------+-----------+--------------+--------+
+|        101 | bhavy     | data science |  25000 |
+|        102 | venkatesh | B.Tech       |  10000 |
++------------+-----------+--------------+--------+
+2 rows in set (0.05 sec)
+
+mysql> update faculty set salary = 50000;
+Query OK, 2 rows affected (0.07 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from faculty;
++------------+-----------+--------------+--------+
+| Faculty_ID | Name      | Course       | Salary |
++------------+-----------+--------------+--------+
+|        101 | bhavy     | data science |  50000 |
+|        102 | venkatesh | B.Tech       |  50000 |
++------------+-----------+--------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> update faculty set salary = 10000 where faculty_id = 101;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 2  Changed: 1  Warnings: 0
+
+mysql> select * from faculty;
++------------+-----------+--------------+--------+
+| Faculty_ID | Name      | Course       | Salary |
++------------+-----------+--------------+--------+
+|        101 | bhavy     | data science |  10000 |
+|        102 | venkatesh | B.Tech       |  50000 |
++------------+-----------+--------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> delete from faculty where salary = 50000;
+Query OK, 1 row affected (0.12 sec)
+
+mysql> select * from faculty;
++------------+-------+--------------+--------+
+| Faculty_ID | Name  | Course       | Salary |
++------------+-------+--------------+--------+
+|        101 | bhavy | data science |  10000 |
++------------+-------+--------------+--------+
+1 row in set (0.01 sec)
+
+mysql> truncate faculty;
+Query OK, 0 rows affected (1.52 sec)
+
+mysql> select * from faculty;
+Empty set (0.09 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_university |
++----------------------+
+| faculty              |
+| student              |
++----------------------+
+2 rows in set (0.14 sec)
+
+mysql> drop table faculty;
+Query OK, 0 rows affected (0.91 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_university |
++----------------------+
+| student              |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> drop database university;
+Query OK, 1 row affected (0.51 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| classicmodels      |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| school             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.06 sec)
+
+mysql>

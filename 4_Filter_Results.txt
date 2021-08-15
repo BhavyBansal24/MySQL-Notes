@@ -1,0 +1,226 @@
+Enter password: **************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 33
+Server version: 8.0.26 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| classicmodels      |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| school             |
+| sys                |
+| university         |
+| world              |
++--------------------+
+9 rows in set (0.11 sec)
+
+mysql> use classicmodels;
+Database changed
+mysql> show tables;
++-------------------------+
+| Tables_in_classicmodels |
++-------------------------+
+| customers               |
+| employees               |
+| offices                 |
+| orderdetails            |
+| orders                  |
+| payments                |
+| productlines            |
+| products                |
++-------------------------+
+8 rows in set (0.00 sec)
+
+mysql> desc orders;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| orderNumber    | int         | NO   | PRI | NULL    |       |
+| orderDate      | date        | NO   |     | NULL    |       |
+| requiredDate   | date        | NO   |     | NULL    |       |
+| shippedDate    | date        | YES  |     | NULL    |       |
+| status         | varchar(15) | NO   |     | NULL    |       |
+| comments       | text        | YES  |     | NULL    |       |
+| customerNumber | int         | NO   | MUL | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from orders limit 20;
+
+| orderNumber | orderDate  | requiredDate | shippedDate | status  | comments                                                                                       | customerNumber |
+
+|       10100 | 2003-01-06 | 2003-01-13   | 2003-01-10  | Shipped | NULL                                                                                           |            363 |
+|       10101 | 2003-01-09 | 2003-01-18   | 2003-01-11  | Shipped | Check on availability.                                                                         |            128 |
+|       10102 | 2003-01-10 | 2003-01-18   | 2003-01-14  | Shipped | NULL                                                                                           |            181 |
+|       10103 | 2003-01-29 | 2003-02-07   | 2003-02-02  | Shipped | NULL                                                                                           |            121 |
+|       10104 | 2003-01-31 | 2003-02-09   | 2003-02-01  | Shipped | NULL                                                                                           |            141 |
+|       10105 | 2003-02-11 | 2003-02-21   | 2003-02-12  | Shipped | NULL                                                                                           |            145 |
+|       10106 | 2003-02-17 | 2003-02-24   | 2003-02-21  | Shipped | NULL                                                                                           |            278 |
+|       10107 | 2003-02-24 | 2003-03-03   | 2003-02-26  | Shipped | Difficult to negotiate with customer. We need more marketing materials                         |            131 |
+|       10108 | 2003-03-03 | 2003-03-12   | 2003-03-08  | Shipped | NULL                                                                                           |            385 |
+|       10109 | 2003-03-10 | 2003-03-19   | 2003-03-11  | Shipped | Customer requested that FedEx Ground is used for this shipping                                 |            486 |
+|       10110 | 2003-03-18 | 2003-03-24   | 2003-03-20  | Shipped | NULL                                                                                           |            187 |
+|       10111 | 2003-03-25 | 2003-03-31   | 2003-03-30  | Shipped | NULL                                                                                           |            129 |
+|       10112 | 2003-03-24 | 2003-04-03   | 2003-03-29  | Shipped | Customer requested that ad materials be included in th pment |            144 |
+|       10113 | 2003-03-26 | 2003-04-02   | 2003-03-27  | Shipped | NULL                                                                                           |            124 |
+|       10114 | 2003-04-01 | 2003-04-07   | 2003-04-02  | Shipped | NULL                                                                                           |            172 |
+|       10115 | 2003-04-04 | 2003-04-12   | 2003-04-07  | Shipped | NULL                                                                                           |            424 |
+|       10116 | 2003-04-11 | 2003-04-19   | 2003-04-13  | Shipped | NULL                                                                                           |            381 |
+|       10117 | 2003-04-16 | 2003-04-24   | 2003-04-17  | Shipped | NULL                                                                                           |            148 |
+|       10118 | 2003-04-21 | 2003-04-29   | 2003-04-26  | Shipped | Customer has worked with some aware of their MSRP            |            216 |
+|       10119 | 2003-04-28 | 2003-05-05   | 2003-05-02  | Shipped | NULL                                                                                           |            382 |
+
+20 rows in set (0.01 sec)
+
+mysql> select * from orders;
+
+| orderNumber | orderDate  | requiredDate | shippedDate | status     | comments                                                                                                                                                                                      | customerNumber |
+
+|       10100 | 2003-01-06 | 2003-01-13   | 2003-01-10  | Shipped    | NULL                                                                                                                                                                                          |            363 |
+|       10101 | 2003-01-09 | 2003-01-18   | 2003-01-11  | Shipped    | Check on availability.                                                                                                                                                                        |            128 |
+|       10102 | 2003-01-10 | 2003-01-18   | 2003-01-14  | Shipped    | NULL                                                                                                                                                                                          |            181 |
+|       10103 | 2003-01-29 | 2003-02-07   | 2003-02-02  | Shipped    | NULL                                                                                                                                                                                          |            121 |
+|       10104 | 2003-01-31 | 2003-02-09   | 2003-02-01  | Shipped    | NULL                                                                                                                                                                                          |            141 |
+|       10105 | 2003-02-11 | 2003-02-21   | 2003-02-12  | Shipped    | NULL                                                                                                                                                                                          |            145 |
+|       10106 | 2003-02-17 | 2003-02-24   | 2003-02-21  | Shipped    | NULL                                                                                                                                                                                          |            278 |
+|       10107 | 2003-02-24 | 2003-03-03   | 2003-02-26  | Shipped    | Difficult to negotiate with customer. We need more marketing materials                                                                                                                        |            131 |
+|       10108 | 2003-03-03 | 2003-03-12   | 2003-03-08  | Shipped    | NULL                                                                                                                                                                                          |            385 |
+|       10109 | 2003-03-10 | 2003-03-19   | 2003-03-11  | Shipped    | Customer requested that FedEx Ground is used for this shipping                                                                                  #######deleted############                    |            486 |
+|       10416 | 2005-05-10 | 2005-05-16   | 2005-05-14  | Shipped    | NULL                                                                                                                                                                                          |            386 |
+|       10417 | 2005-05-13 | 2005-05-19   | 2005-05-19  | Disputed   | Customer doesn't like the colors and precision of the models.                                                                                                                                 |            141 |
+|       10418 | 2005-05-16 | 2005-05-24   | 2005-05-20  | Shipped    | NULL                                                                                                                                                                                          |            412 |
+|       10419 | 2005-05-17 | 2005-05-28   | 2005-05-19  | Shipped    | NULL                                                                                                                                                                                          |            382 |
+|       10420 | 2005-05-29 | 2005-06-07   | NULL        | In Process | NULL                                                                                                                                                                                          |            282 |
+|       10421 | 2005-05-29 | 2005-06-06   | NULL        | In Process | Custom shipping instructions were sent to warehouse                                                                                                                                           |            124 |
+|       10422 | 2005-05-30 | 2005-06-11   | NULL        | In Process | NULL                                                                                                                                                                                          |            157 |
+|       10423 | 2005-05-30 | 2005-06-05   | NULL        | In Process | NULL                                                                                                                                                                                          |            314 |
+|       10424 | 2005-05-31 | 2005-06-08   | NULL        | In Process | NULL                                                                                                                                                                                          |            141 |
+|       10425 | 2005-05-31 | 2005-06-07   | NULL        | In Process | NULL                                                                                                                                                                                          |            119 |
+
+326 rows in set (0.07 sec)
+
+mysql> select * from orders where status = 'shipped';
+
+| orderNumber | orderDate  | requiredDate | shippedDate | status  | comments                                                                                                                                                      | customerNumber |
+|       10100 | 2003-01-06 | 2003-01-13   | 2003-01-10  | Shipped | NULL                                                                                                                                                          |            363 |
+|       10101 | 2003-01-09 | 2003-01-18   | 2003-01-11  | Shipped | Check on availability.                                                                                                                                        |            128 |
+|       10102 | 2003-01-10 | 2003-01-18   | 2003-01-14  | Shipped | NULL                                                                                                                                                          |            181 |
+|       10103 | 2003-01-29 | 2003-02-07   | 2003-02-02  | Shipped | NULL                                                                                                                                                          |            121 |
+|       10104 | 2003-01-31 | 2003-02-09   | 2003-02-01  | Shipped | NULL                                                                                                                             ######DELETED######          |            141 |
+|       10410 | 2005-04-29 | 2005-05-10   | 2005-04-30  | Shipped | NULL                                                                                                                                                          |            357 |
+|       10411 | 2005-05-01 | 2005-05-08   | 2005-05-06  | Shipped | NULL                                                                                                                                                          |            233 |
+|       10412 | 2005-05-03 | 2005-05-13   | 2005-05-05  | Shipped | NULL                                                                                                                                                          |            141 |
+|       10413 | 2005-05-05 | 2005-05-14   | 2005-05-09  | Shipped | Customer requested that DHL is used for this shipping                                                                                                         |            175 |
+|       10416 | 2005-05-10 | 2005-05-16   | 2005-05-14  | Shipped | NULL                                                                                                                                                          |            386 |
+|       10418 | 2005-05-16 | 2005-05-24   | 2005-05-20  | Shipped | NULL                                                                                                                                                          |            412 |
+|       10419 | 2005-05-17 | 2005-05-28   | 2005-05-19  | Shipped | NULL                                                                                                                                                          |            382 |
+303 rows in set (0.00 sec)
+
+mysql> select * from orders where status = 'In Process';
++-------------+------------+--------------+-------------+------------+-----------------------------------------------------+----------------+
+| orderNumber | orderDate  | requiredDate | shippedDate | status     | comments                                            | customerNumber |
++-------------+------------+--------------+-------------+------------+-----------------------------------------------------+----------------+
+|       10420 | 2005-05-29 | 2005-06-07   | NULL        | In Process | NULL                                                |            282 |
+|       10421 | 2005-05-29 | 2005-06-06   | NULL        | In Process | Custom shipping instructions were sent to warehouse |            124 |
+|       10422 | 2005-05-30 | 2005-06-11   | NULL        | In Process | NULL                                                |            157 |
+|       10423 | 2005-05-30 | 2005-06-05   | NULL        | In Process | NULL                                                |            314 |
+|       10424 | 2005-05-31 | 2005-06-08   | NULL        | In Process | NULL                                                |            141 |
+|       10425 | 2005-05-31 | 2005-06-07   | NULL        | In Process | NULL                                                |            119 |
++-------------+------------+--------------+-------------+------------+-----------------------------------------------------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from orders where orderNumber > 10420;
++-------------+------------+--------------+-------------+------------+-----------------------------------------------------+----------------+
+| orderNumber | orderDate  | requiredDate | shippedDate | status     | comments                                            | customerNumber |
++-------------+------------+--------------+-------------+------------+-----------------------------------------------------+----------------+
+|       10421 | 2005-05-29 | 2005-06-06   | NULL        | In Process | Custom shipping instructions were sent to warehouse |            124 |
+|       10422 | 2005-05-30 | 2005-06-11   | NULL        | In Process | NULL                                                |            157 |
+|       10423 | 2005-05-30 | 2005-06-05   | NULL        | In Process | NULL                                                |            314 |
+|       10424 | 2005-05-31 | 2005-06-08   | NULL        | In Process | NULL                                                |            141 |
+|       10425 | 2005-05-31 | 2005-06-07   | NULL        | In Process | NULL                                                |            119 |
++-------------+------------+--------------+-------------+------------+-----------------------------------------------------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from orders where orderNumber > 10420 and orderNumber < 10424;
++-------------+------------+--------------+-------------+------------+-----------------------------------------------------+----------------+
+| orderNumber | orderDate  | requiredDate | shippedDate | status     | comments                                            | customerNumber |
++-------------+------------+--------------+-------------+------------+-----------------------------------------------------+----------------+
+|       10421 | 2005-05-29 | 2005-06-06   | NULL        | In Process | Custom shipping instructions were sent to warehouse |            124 |
+|       10422 | 2005-05-30 | 2005-06-11   | NULL        | In Process | NULL                                                |            157 |
+|       10423 | 2005-05-30 | 2005-06-05   | NULL        | In Process | NULL                                                |            314 |
++-------------+------------+--------------+-------------+------------+-----------------------------------------------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from orders where orderDate >= '2005-05-01' and orderDate <= '2005-05-15';
++-------------+------------+--------------+-------------+----------+-----------------------------------------------------------------------------------------------------------------------------+----------------+
+| orderNumber | orderDate  | requiredDate | shippedDate | status   | comments                                                 | customerNumber |
++-----------------------------------------------------------------------------------------------------------------------------+----------------+
+|       10411 | 2005-05-01 | 2005-05-08   | 2005-05-06  | Shipped  | 			      NULL 			      |            233 |
+|       10412 | 2005-05-03 | 2005-05-13   | 2005-05-05  | Shipped  | 			      NULL 			      |            141 |
+|       10413 | 2005-05-05 | 2005-05-14   | 2005-05-09  | Shipped  | 			      NULL			      |            175 |
+|       10414 | 2005-05-06 | 2005-05-13   | NULL        | On Hold  | Customer credit limit exceeded			      |            362 |
+|       10415 | 2005-05-09 | 2005-05-20   | 2005-05-12  | Disputed | Customer claims the scales    			      |            471 |
+|       10416 | 2005-05-10 | 2005-05-16   | 2005-05-14  | Shipped  |                          NULL   			      |            386 |
+|       10417 | 2005-05-13 | 2005-05-19   | 2005-05-19  | Disputed | Customer doesn't like the colo			      |            141 |
++-----------------------------------------------------------------------------------------------------------------------------+----------------+
+7 rows in set (0.01 sec)
+
+mysql> select * from orders where comments is not NULL;
+
+| orderNumber | orderDate  | requiredDate | shippedDate | status     | comments                                                                                                                                                                                      | customerNumber |
+
+|       10101 | 2003-01-09 | 2003-01-18   | 2003-01-11  | Shipped    | Check on availability.                                                                                                                                                                        |            128 |
+|       10107 | 2003-02-24 | 2003-03-03   | 2003-02-26  | Shipped    | Difficult to negotiate with customer. We need more marketing materials                                                                                                                        |            131 |
+|       10109 | 2003-03-10 | 2003-03-19   | 2003-03-11  | Shipped    | Customer requested that FedEx Ground is used for this shipping                                                                                                                                |            486 |
+|       10112 | 2003-03-24 | 2003-04-03   | 2003-03-29  | Shipped    | Customer requested that ad materials (such as posters, pamphlets) be included in the shippment                                                                                                |            144 |
+|       10118 | 2003-04-21 | 2003-04-29   | 2003-04-26  | Shipped    | Customer has worked with some of our vendors in the past and is aware of their MSRP                                                                    #####DELETED#####                       |            216 |
+|       10414 | 2005-05-06 | 2005-05-13   | NULL        | On Hold    | Customer credit limit exceeded. Will ship when a payment is received.                                                                                                                         |            362 |
+|       10415 | 2005-05-09 | 2005-05-20   | 2005-05-12  | Disputed   | Customer claims the scales of the models don't match what was discussed. I keep all the paperwork though to prove otherwise                                                                   |            471 |
+|       10417 | 2005-05-13 | 2005-05-19   | 2005-05-19  | Disputed   | Customer doesn't like the colors and precision of the models.                                                                                                                                 |            141 |
+|       10421 | 2005-05-29 | 2005-06-06   | NULL        | In Process | Custom shipping instructions were sent to warehouse                                                                                                                                           |            124 |
+80 rows in set (0.00 sec)
+
+mysql> select * from orders where comments is NULL;
++-------------+------------+--------------+-------------+------------+----------+----------------+
+| orderNumber | orderDate  | requiredDate | shippedDate | status     | comments | customerNumber |
++-------------+------------+--------------+-------------+------------+----------+----------------+
+|       10100 | 2003-01-06 | 2003-01-13   | 2003-01-10  | Shipped    | NULL     |            363 |
+|       10102 | 2003-01-10 | 2003-01-18   | 2003-01-14  | Shipped    | NULL     |            181 |
+|       10103 | 2003-01-29 | 2003-02-07   | 2003-02-02  | Shipped    | NULL     |            121 |
+|       10104 | 2003-01-31 | 2003-02-09   | 2003-02-01  | Shipped    | NULL     |            141 |
+|       10105 | 2003-02-11 | 2003-02-21   | 2003-02-12  | Shipped    | NULL     |            145 |
+|       10106 | 2003-02-17 | 2003-02-24   | 2003-02-21  | Shipped    | NULL     |            278 |
+|       10108 | 2003-03-03 | 2003-03-12   | 2003-03-08  | Shipped    | NULL     |            385 |
+|       10110 | 2003-03-18 | 2003-03-24   | 2003-03-20  | Shipped    | NULL     |            187 |
+                                         #####DELETED#####
+|       10412 | 2005-05-03 | 2005-05-13   | 2005-05-05  | Shipped    | NULL     |            141 |
+|       10416 | 2005-05-10 | 2005-05-16   | 2005-05-14  | Shipped    | NULL     |            386 |
+|       10418 | 2005-05-16 | 2005-05-24   | 2005-05-20  | Shipped    | NULL     |            412 |
+|       10419 | 2005-05-17 | 2005-05-28   | 2005-05-19  | Shipped    | NULL     |            382 |
+|       10420 | 2005-05-29 | 2005-06-07   | NULL        | In Process | NULL     |            282 |
+|       10422 | 2005-05-30 | 2005-06-11   | NULL        | In Process | NULL     |            157 |
+|       10423 | 2005-05-30 | 2005-06-05   | NULL        | In Process | NULL     |            314 |
+|       10424 | 2005-05-31 | 2005-06-08   | NULL        | In Process | NULL     |            141 |
+|       10425 | 2005-05-31 | 2005-06-07   | NULL        | In Process | NULL     |            119 |
++-------------+------------+--------------+-------------+------------+----------+----------------+
+246 rows in set (0.00 sec)
+
+mysql> select * from orders where comments = NULL;
+Empty set (0.00 sec)
+
+mysql>

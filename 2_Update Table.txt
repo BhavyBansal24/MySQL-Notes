@@ -1,0 +1,200 @@
+Enter password: **************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 30
+Server version: 8.0.26 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| school             |
+| sys                |
+| university         |
+| world              |
++--------------------+
+8 rows in set (0.26 sec)
+
+mysql> use university;
+Database changed
+
+mysql> desc student;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| ID    | int          | YES  |     | NULL    |       |
+| Name  | varchar(100) | YES  |     | NULL    |       |
+| Age   | int          | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table Student add(Address varchar(100));
+Query OK, 0 rows affected (1.96 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| ID      | int          | YES  |     | NULL    |       |
+| Name    | varchar(100) | YES  |     | NULL    |       |
+| Age     | int          | YES  |     | NULL    |       |
+| Address | varchar(100) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Student;
++------+--------+------+---------+
+| ID   | Name   | Age  | Address |
++------+--------+------+---------+
+|  101 | Mohit  |   20 | NULL    |
+|  102 | bhavy  |   20 | NULL    |
+|  103 | nikhil | NULL | NULL    |
++------+--------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> alter table Student add(Email_ID varchar(100), ContactNo varchar(100));
+Query OK, 0 rows affected (0.78 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| ID        | int          | YES  |     | NULL    |       |
+| Name      | varchar(100) | YES  |     | NULL    |       |
+| Age       | int          | YES  |     | NULL    |       |
+| Address   | varchar(100) | YES  |     | NULL    |       |
+| Email_ID  | varchar(100) | YES  |     | NULL    |       |
+| ContactNo | varchar(100) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+6 rows in set (0.09 sec)
+
+mysql> select * from Student;
++------+--------+------+---------+----------+-----------+
+| ID   | Name   | Age  | Address | Email_ID | ContactNo |
++------+--------+------+---------+----------+-----------+
+|  101 | Mohit  |   20 | NULL    | NULL     | NULL      |
+|  102 | bhavy  |   20 | NULL    | NULL     | NULL      |
+|  103 | nikhil | NULL | NULL    | NULL     | NULL      |
++------+--------+------+---------+----------+-----------+
+3 rows in set (0.11 sec)
+
+mysql> alter table Student add(Test int default 100);
+Query OK, 0 rows affected (0.56 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from Student;
++------+--------+------+---------+----------+-----------+------+
+| ID   | Name   | Age  | Address | Email_ID | ContactNo | Test |
++------+--------+------+---------+----------+-----------+------+
+|  101 | Mohit  |   20 | NULL    | NULL     | NULL      |  100 |
+|  102 | bhavy  |   20 | NULL    | NULL     | NULL      |  100 |
+|  103 | nikhil | NULL | NULL    | NULL     | NULL      |  100 |
++------+--------+------+---------+----------+-----------+------+
+3 rows in set (0.00 sec)
+
+mysql> desc student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| ID        | int          | YES  |     | NULL    |       |
+| Name      | varchar(100) | YES  |     | NULL    |       |
+| Age       | int          | YES  |     | NULL    |       |
+| Address   | varchar(100) | YES  |     | NULL    |       |
+| Email_ID  | varchar(100) | YES  |     | NULL    |       |
+| ContactNo | varchar(100) | YES  |     | NULL    |       |
+| Test      | int          | YES  |     | 100     |       |
++-----------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from Student;
++------+--------+------+---------+----------+-----------+------+
+| ID   | Name   | Age  | Address | Email_ID | ContactNo | Test |
++------+--------+------+---------+----------+-----------+------+
+|  101 | Mohit  |   20 | NULL    | NULL     | NULL      |  100 |
+|  102 | bhavy  |   20 | NULL    | NULL     | NULL      |  100 |
+|  103 | nikhil | NULL | NULL    | NULL     | NULL      |  100 |
++------+--------+------+---------+----------+-----------+------+
+3 rows in set (0.00 sec)
+
+mysql> alter table Student modify ContactNo int;
+Query OK, 3 rows affected (3.62 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| ID        | int          | YES  |     | NULL    |       |
+| Name      | varchar(100) | YES  |     | NULL    |       |
+| Age       | int          | YES  |     | NULL    |       |
+| Address   | varchar(100) | YES  |     | NULL    |       |
+| Email_ID  | varchar(100) | YES  |     | NULL    |       |
+| ContactNo | int          | YES  |     | NULL    |       |
+| Test      | int          | YES  |     | 100     |       |
++-----------+--------------+------+-----+---------+-------+
+7 rows in set (0.18 sec)
+
+mysql> alter table Student change Address Location varchar(100);
+Query OK, 0 rows affected (0.81 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| ID        | int          | YES  |     | NULL    |       |
+| Name      | varchar(100) | YES  |     | NULL    |       |
+| Age       | int          | YES  |     | NULL    |       |
+| Location  | varchar(100) | YES  |     | NULL    |       |
+| Email_ID  | varchar(100) | YES  |     | NULL    |       |
+| ContactNo | int          | YES  |     | NULL    |       |
+| Test      | int          | YES  |     | 100     |       |
++-----------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> alter table Student drop column Test;
+Query OK, 0 rows affected (2.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| ID        | int          | YES  |     | NULL    |       |
+| Name      | varchar(100) | YES  |     | NULL    |       |
+| Age       | int          | YES  |     | NULL    |       |
+| Location  | varchar(100) | YES  |     | NULL    |       |
+| Email_ID  | varchar(100) | YES  |     | NULL    |       |
+| ContactNo | int          | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+6 rows in set (0.03 sec)
+
+mysql> alter table Student drop column Email_ID, drop column ContactNo;
+Query OK, 0 rows affected (1.43 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| ID       | int          | YES  |     | NULL    |       |
+| Name     | varchar(100) | YES  |     | NULL    |       |
+| Age      | int          | YES  |     | NULL    |       |
+| Location | varchar(100) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql>
